@@ -28,10 +28,10 @@ describe('Payments', function () {
             .connect(acc2)
             .pay('hello from hardhat', {value: 100})
         await tx.wait()
-        // await expect(() => tx).to.changeEtherBalances(
-        //     [acc2, payments],
-        //     [-100, 100]
-        // )
+        await expect(() => tx).to.changeEtherBalances(
+            [acc2, payments],
+            [-100, 100]
+        )
         const finishBalance = await acc2.getBalance()
         console.log('Balance after', await acc2.getBalance())
         console.log('Delta', finishBalance - startBalance)
